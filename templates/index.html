@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading List</title>
+</head>
+<body>
+    <h1>My Reading List</h1>
+    <form action="{{ url_for('add') }}" method="POST">
+        <input type="text" name="title" placeholder="Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <input type="text" name="genre" placeholder="Genre" required>
+        <select name="status">
+            <option value="To Read">To Read</option>
+            <option value="Reading">Reading</option>
+            <option value="Finished">Finished</option>
+        </select>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        {% for book in reading_list %}
+            <li>{{ book.title }} by {{ book.author }} - {{ book.genre }} ({{ book.status }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
